@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Novo produto</h3>
+        </div>
+        <div class="panel-body">
+            <form [formGroup]="cadastroForm" (submit)="cadastrar($event)">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input formControlName="nome" name="nome" [(ngModel)]="produto.nome" class="form-control" autocomplete="off" />
+                    <div *ngIf="!cadastroForm.controls.nome.valid">
+                        <span *ngIf="cadastroForm.controls.nome.errors.required" class="form-control alert-danger">
+                        Nome obrigatório
+                    </span>
+                        <span *ngIf="cadastroForm.controls.nome.errors.minlength" class="form-control alert-danger">
+                        Nome deve ter no mínimo 4 caracteres
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <input formControlName="preco" name="preco" [(ngModel)]="produto.preco" class="form-control" autocomplete="off" />
+                    <div *ngIf="!cadastroForm.controls.preco.valid">
+                        <span *ngIf="cadastroForm.controls.preco.errors.required" class="form-control alert-danger">
+                            Preço obrigatório
+                        </span>
+                        <span *ngIf="!cadastroForm.controls.preco.errors.isNumber" class="form-control alert-danger">
+                            Preço deve ser um valor numérico
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade</label>
+                    <input formControlName="quantidade" name="quantidade" [(ngModel)]="produto.quantidade" class="form-control" autocomplete="off" />
+                    <div *ngIf="!cadastroForm.controls.quantidade.valid">
+                        <span *ngIf="cadastroForm.controls.quantidade.errors.required" class="form-control alert-danger">
+                            Quantidade obrigatório
+                        </span>
+                        <span *ngIf="!cadastroForm.controls.quantidade.errors.isNumber" class="form-control alert-danger">
+                            Quantidade deve ser um valor numérico
+                        </span>
+                    </div>
+                </div>
+                <botao nome="Salvar" tipo="submit" estilo="btn-primary" [habilitado]="!cadastroForm.valid"></botao>
+                <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>

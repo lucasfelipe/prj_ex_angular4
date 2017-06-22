@@ -1,0 +1,15 @@
+<ul class="nav nav-pills nav-stacked" style="float: left">
+    <!--<li><a [routerLink]="['/cadastro']">Nova</a></li>
+        <li><a [routerLink]="['']">Home</a></li>-->
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            Produtos <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a [routerLink]="['/cadastro_produto']">Novo</a></li>
+        </ul>
+    </li>
+    <li role="presentation"><a href="#">Carrinho</a></li>
+</ul>
+<router-outlet></router-outlet>

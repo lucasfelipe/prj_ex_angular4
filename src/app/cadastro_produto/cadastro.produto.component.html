@@ -4,6 +4,7 @@
             <h3>Novo produto</h3>
         </div>
         <div class="panel-body">
+            <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
             <form [formGroup]="cadastroForm" (submit)="cadastrar($event)">
                 <div class="form-group">
                     <label for="nome">Nome</label>

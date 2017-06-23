@@ -16,9 +16,10 @@ var router_1 = require("@angular/router");
 var number_validator_1 = require("../utils/validators/number.validator");
 var CadastroProdutoComponent = (function () {
     function CadastroProdutoComponent(service, fb, route, router) {
+        var _this = this;
         this.produto = new produto_component_1.ProdutoComponent();
+        this.mensagem = '';
         this.service = service;
-        this.route = route;
         this.cadastroForm = fb.group({
             nome: ['', forms_1.Validators.compose([
                     forms_1.Validators.required,
@@ -34,12 +35,25 @@ var CadastroProdutoComponent = (function () {
                     number_validator_1.isNumber()
                 ])]
         });
+        this.route = route;
+        this.route.params.subscribe(function (params) {
+            var id = params['id'];
+            if (id) {
+                _this.service.buscaPorId(id).subscribe(function (produto) { return _this.produto = produto; }, function (error) { return console.log(error); });
+            }
+        });
         this.router = router;
     }
     CadastroProdutoComponent.prototype.cadastrar = function (event) {
+        var _this = this;
         event.preventDefault();
-        console.log(this.produto);
-        //TODO: implementar envio do produto para o WebService e redirecionar a pagina para a lista de produtos
+        this.service.cadastrar(this.produto)
+            .subscribe(function (res) {
+            _this.mensagem = res.mensagem;
+            _this.produto = new produto_component_1.ProdutoComponent();
+            if (!res.inclusao)
+                _this.router.navigate(['']);
+        });
     };
     return CadastroProdutoComponent;
 }());

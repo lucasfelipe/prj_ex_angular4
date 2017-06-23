@@ -9,44 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var BotaoComponent = (function () {
-    function BotaoComponent() {
-        this.nome = '';
-        this.estilo = 'btn-default';
-        this.tipo = 'button';
-        this.habilitado = false;
-        this.acao = new core_1.EventEmitter();
+var ModalComponent = (function () {
+    function ModalComponent(_element) {
+        this._element = _element;
+        this.title = 'Tem certeza?';
+        this.description = 'Modal description';
+        this.action = new core_1.EventEmitter();
+        this._element = _element;
     }
-    BotaoComponent.prototype.executaAcao = function () {
-        this.acao.emit(null);
+    ModalComponent.prototype.prosseguir = function (event) {
+        event.preventDefault();
+        this.action.emit(null);
     };
-    return BotaoComponent;
+    ModalComponent.prototype.open = function () {
+    };
+    return ModalComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
-], BotaoComponent.prototype, "nome", void 0);
+], ModalComponent.prototype, "title", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
-], BotaoComponent.prototype, "estilo", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], BotaoComponent.prototype, "tipo", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], BotaoComponent.prototype, "habilitado", void 0);
+], ModalComponent.prototype, "description", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
-], BotaoComponent.prototype, "acao", void 0);
-BotaoComponent = __decorate([
+], ModalComponent.prototype, "action", void 0);
+ModalComponent = __decorate([
     core_1.Component({
-        selector: 'botao',
-        templateUrl: './botao.component.html'
-    })
-], BotaoComponent);
-exports.BotaoComponent = BotaoComponent;
-//# sourceMappingURL=botao.component.js.map
+        selector: 'modal',
+        templateUrl: './modal.component.html'
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef])
+], ModalComponent);
+exports.ModalComponent = ModalComponent;
+//# sourceMappingURL=modal.component.js.map

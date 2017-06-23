@@ -1,19 +1,21 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProdutoModule } from './produto/produto.module';
 import { HttpModule, JsonpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { BotaoModule } from './botao/botao.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from './modal/modal.module';
 
-import { AppComponent }  from './app.component';
+
+import { AppComponent } from './app.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { CadastroProdutoComponent } from './cadastro_produto/cadastro.produto.component';
 
 import { routing } from './app.routes';
- 
+
 @NgModule({
-  imports:      [ 
+  imports: [
     BrowserModule,
     ProdutoModule,
     HttpModule,
@@ -21,9 +23,10 @@ import { routing } from './app.routes';
     JsonpModule,
     BotaoModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule
   ],
-  declarations: [ AppComponent, ListagemComponent, CadastroProdutoComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [AppComponent, ListagemComponent, CadastroProdutoComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

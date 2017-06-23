@@ -12,6 +12,7 @@ var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 var botao_module_1 = require("./botao/botao.module");
 var forms_1 = require("@angular/forms");
+var modal_module_1 = require("./modal/modal.module");
 var app_component_1 = require("./app.component");
 var listagem_component_1 = require("./listagem/listagem.component");
 var cadastro_produto_component_1 = require("./cadastro_produto/cadastro.produto.component");
@@ -31,7 +32,8 @@ AppModule = __decorate([
             http_1.JsonpModule,
             botao_module_1.BotaoModule,
             forms_1.FormsModule,
-            forms_1.ReactiveFormsModule
+            forms_1.ReactiveFormsModule,
+            modal_module_1.ModalModule
         ],
         declarations: [app_component_1.AppComponent, listagem_component_1.ListagemComponent, cadastro_produto_component_1.CadastroProdutoComponent],
         bootstrap: [app_component_1.AppComponent]

@@ -13,6 +13,13 @@ var ProdutoComponent = (function () {
     function ProdutoComponent() {
         this.nome = '';
     }
+    Object.defineProperty(ProdutoComponent.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return ProdutoComponent;
 }());
 __decorate([

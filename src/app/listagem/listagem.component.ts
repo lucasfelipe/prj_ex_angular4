@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ProdutoService } from '../produto/produto.service';
 import { ProdutoComponent } from '../produto/produto.component';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -10,15 +12,24 @@ import { ProdutoComponent } from '../produto/produto.component';
 export class ListagemComponent {
 
     produtos: ProdutoComponent[] = [];
-    service: ProdutoService;
+    private service: ProdutoService;
+    private router: Router;
 
-    constructor(service: ProdutoService) {
+    constructor(service: ProdutoService, router: Router) {
         this.service = service;
         this.service
             .lista()
             .subscribe(produtos => {
                 this.produtos = produtos;
             },
+            error => console.log(error));
+        this.router = router;
+    }
+
+    excluir(produto: ProdutoComponent): void {
+        this.service.excluir(produto)
+            .subscribe(
+            res => console.log(res),
             error => console.log(error));
     }
 

@@ -12,21 +12,23 @@ import { isNumber } from '../utils/validators/number.validator';
 export class CadastroProdutoComponent {
 
     produto: ProdutoComponent = new ProdutoComponent();
-    
+    mensagem: string = '';
+
     cadastroForm: FormGroup;
     private router: Router;
     private service: ProdutoService;
     private route: ActivatedRoute;
 
+
     constructor(service: ProdutoService, fb: FormBuilder, route: ActivatedRoute, router: Router) {
         this.service = service;
-        this.route = route;
+
         this.cadastroForm = fb.group({
             nome: ['', Validators.compose([
-                            Validators.required,
-                            Validators.minLength(4)
-                        ])
-                    ],
+                Validators.required,
+                Validators.minLength(4)
+            ])
+            ],
             preco: ['', Validators.compose([
                 Validators.required,
                 isNumber()
@@ -36,13 +38,28 @@ export class CadastroProdutoComponent {
                 isNumber()
             ])]
         });
+
+        this.route = route;
+        this.route.params.subscribe(params => {
+            let id = params['id'];
+            if (id) {
+                this.service.buscaPorId(id).subscribe(
+                    produto => this.produto = produto,
+                    error => console.log(error));
+            }
+        });
+        
         this.router = router;
     }
 
     cadastrar(event: any) {
         event.preventDefault();
-        console.log(this.produto);
-        //TODO: implementar envio do produto para o WebService e redirecionar a pagina para a lista de produtos
+        this.service.cadastrar(this.produto)
+            .subscribe(res => {
+                this.mensagem = res.mensagem;
+                this.produto = new ProdutoComponent();
+                if (!res.inclusao) this.router.navigate(['']);
+            });
     }
 
 }

@@ -5,7 +5,8 @@ import { CadastroProdutoComponent } from './cadastro_produto/cadastro.produto.co
 const appRoutes: Routes = [
     { path: '', component: ListagemComponent },
     { path: 'cadastro_produto', component: CadastroProdutoComponent },
-    { path: '**', component: ListagemComponent }  
+    { path: 'editar_produto/:id', component: CadastroProdutoComponent },
+    { path: '**', component: ListagemComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

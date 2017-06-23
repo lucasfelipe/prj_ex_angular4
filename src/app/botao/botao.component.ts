@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class BotaoComponent {
 
-    @Input() nome: string = 'Ok';
+    @Input() nome: string = '';
     @Input() estilo: string = 'btn-default';
     @Input() tipo: string = 'button';
     @Input() habilitado: boolean = false;

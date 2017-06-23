@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var produto_service_1 = require("../produto/produto.service");
+var router_1 = require("@angular/router");
 var ListagemComponent = (function () {
-    function ListagemComponent(service) {
+    function ListagemComponent(service, router) {
         var _this = this;
         this.produtos = [];
         this.service = service;
@@ -20,7 +21,12 @@ var ListagemComponent = (function () {
             .subscribe(function (produtos) {
             _this.produtos = produtos;
         }, function (error) { return console.log(error); });
+        this.router = router;
     }
+    ListagemComponent.prototype.excluir = function (produto) {
+        this.service.excluir(produto)
+            .subscribe(function (res) { return console.log(res); }, function (error) { return console.log(error); });
+    };
     return ListagemComponent;
 }());
 ListagemComponent = __decorate([
@@ -28,7 +34,7 @@ ListagemComponent = __decorate([
         selector: 'listagem',
         templateUrl: './listagem.component.html'
     }),
-    __metadata("design:paramtypes", [produto_service_1.ProdutoService])
+    __metadata("design:paramtypes", [produto_service_1.ProdutoService, router_1.Router])
 ], ListagemComponent);
 exports.ListagemComponent = ListagemComponent;
 //# sourceMappingURL=listagem.component.js.map

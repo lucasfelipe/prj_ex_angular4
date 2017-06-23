@@ -6,9 +6,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <td>Nome</td>
-                    <td>Preço</td>
-                    <td>Quantidade</td>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Editar</th>
+                    <th>Remover</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +18,35 @@
                     <td>{{produto.nome}}</td>
                     <td>{{produto.preco}}</td>
                     <td>{{produto.quantidade}}</td>
+                    <td>
+                        <a [routerLink]="['/editar_produto', produto.id]">
+                            <botao estilo="btn-warning glyphicon glyphicon-edit"></botao>
+                        </a>
+                    </td>
+                    <td>
+                        <botao estilo="btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalComponent"></botao>
+                        <!-- Modal -->
+                        <div id="modalComponent" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Tem certeza?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Deseja excluir este produto?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" (click)="excluir(produto)">Prosseguir</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

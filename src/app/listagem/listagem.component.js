@@ -24,8 +24,10 @@ var ListagemComponent = (function () {
         this.router = router;
     }
     ListagemComponent.prototype.excluir = function (produto) {
-        this.service.excluir(produto)
-            .subscribe(function (res) { return console.log(res); }, function (error) { return console.log(error); });
+        // this.service.excluir(produto)
+        //     .subscribe(
+        //     res => $(element.nativeElement).fadeOut(),
+        //     error => console.log(error));
     };
     return ListagemComponent;
 }());

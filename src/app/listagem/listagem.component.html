@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let produto of produtos">
+                <tr #linhaPrd *ngFor="let produto of produtos">
                     <td>{{produto.nome}}</td>
                     <td>{{produto.preco}}</td>
                     <td>{{produto.quantidade}}</td>
@@ -24,28 +24,8 @@
                         </a>
                     </td>
                     <td>
-                        <botao estilo="btn-danger glyphicon glyphicon-remove" data-toggle="modal" data-target="#modalComponent"></botao>
-                        <!-- Modal -->
-                        <div id="modalComponent" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Tem certeza?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Deseja excluir este produto?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" (click)="excluir(produto)">Prosseguir</button>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        <botao estilo="btn-danger glyphicon glyphicon-remove" (acao)="modal.show()" (click)="executaAcao()"></botao>
+                        <!--<modal #mod description="Deseja excluir este Produto?" (action)="excluir(produto)"></modal>-->
                     </td>
                 </tr>
             </tbody>

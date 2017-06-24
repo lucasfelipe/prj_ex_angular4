@@ -13,15 +13,29 @@ var ModalComponent = (function () {
     function ModalComponent(_element) {
         this._element = _element;
         this.title = 'Tem certeza?';
-        this.description = 'Modal description';
         this.action = new core_1.EventEmitter();
         this._element = _element;
     }
-    ModalComponent.prototype.prosseguir = function (event) {
-        event.preventDefault();
-        this.action.emit(null);
+    ModalComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        $(this._element.nativeElement).dialog({
+            title: this.title,
+            autoOpen: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Cancelar: function () {
+                    $(_this._element.nativeElement).dialog("close");
+                },
+                Confirmar: function () {
+                    $(_this._element.nativeElement).dialog("close");
+                    _this.action.emit();
+                }
+            }
+        });
     };
-    ModalComponent.prototype.open = function () {
+    ModalComponent.prototype.show = function () {
+        $(this._element.nativeElement).dialog('open');
     };
     return ModalComponent;
 }());

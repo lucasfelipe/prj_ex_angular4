@@ -1,25 +1,39 @@
-import { Component, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
     selector: 'modal',
     templateUrl: './modal.component.html'
 })
-export class ModalComponent {
+export class ModalComponent implements AfterViewInit {
 
     @Input() title: string = 'Tem certeza?';
-    @Input() description: string = 'Modal description';
+    @Input() private description: string;
     @Output() action = new EventEmitter();
 
     constructor(private _element: ElementRef) {
         this._element = _element;
     }
 
-    prosseguir(event: any): void {
-        event.preventDefault();
-        this.action.emit(null);
+    ngAfterViewInit() {
+        $(this._element.nativeElement).dialog({
+            title: this.title,
+            autoOpen: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Cancelar: () => {
+                    $(this._element.nativeElement).dialog("close");
+                },
+                Confirmar: () => {
+                    $(this._element.nativeElement).dialog("close");
+                    this.action.emit();
+                }
+            }
+        });
     }
 
-    open() {
+    show() {
+        $(this._element.nativeElement).dialog('open');
     }
 
 }

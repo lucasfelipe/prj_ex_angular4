@@ -27,10 +27,10 @@ export class ListagemComponent {
     }
 
     excluir(produto: ProdutoComponent): void {
-        this.service.excluir(produto)
-            .subscribe(
-            res => console.log(res),
-            error => console.log(error));
+        // this.service.excluir(produto)
+        //     .subscribe(
+        //     res => $(element.nativeElement).fadeOut(),
+        //     error => console.log(error));
     }
 
 }
